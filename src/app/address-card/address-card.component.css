@@ -1,0 +1,19 @@
+.address-card {
+    border: 1px grey solid;
+    padding: 15px;
+}
+.name {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.designation {
+    font-style: italic;
+}
+
+.address {
+    font-size: 15px;
+}
+.phone {
+    border-left: teal 1px grey solid;
+    padding-left: 5px;
+}
