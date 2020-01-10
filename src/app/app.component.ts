@@ -1,3 +1,4 @@
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TestServiceService } from './test-service.service';
 import { User } from './address-card/user.model';
 import { Component } from '@angular/core';
@@ -14,7 +15,7 @@ export class AppComponent {
    user: User;
 
    //telling angular that I need testService object from constructor
-  constructor(private svc: TestServiceService) {
+  constructor(private svc: TestServiceService, private http: HttpClient) {
     this.user = new User();
     this.user.name = "Srikanth";
     this.user.designation = "Developer";
@@ -27,4 +28,8 @@ export class AppComponent {
     this.svc.printToConsole("calling service from app component!!");
   }
 
+  ngOnInit() {
+    let observable = this.http.get('https://api.github.com/users/sdannarapu');
+    observable.subscribe((response) => console.log(response));
+  }
 }

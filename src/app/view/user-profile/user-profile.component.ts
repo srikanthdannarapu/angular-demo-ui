@@ -1,3 +1,4 @@
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TestServiceService } from './../../test-service.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,11 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(private svc: TestServiceService) {
+  response: any;
+  userName: string;
+  constructor(private svc: TestServiceService, private http: HttpClient) {
     this.svc.printToConsole("calling service from userProfile component")
    }
 
   ngOnInit() {
   }
 
+  search() {
+    this.http.get("https://api.github.com/users/" + this.userName)
+    .subscribe((response) => {
+      this.response = response;
+      console.log(response);
+    })
+  }
 }
